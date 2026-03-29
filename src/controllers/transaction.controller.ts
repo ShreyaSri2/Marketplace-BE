@@ -127,6 +127,12 @@ export const updateTransaction = async (req: any, res: Response) => {
     transaction.status = status;
     await transaction.save();
 
+    if(transaction.status === "completed"){
+      await Item.findByIdAndUpdate(transaction.item, {
+        isSold: true,
+      });
+    }
+
     return res.status(200).json({
       success: true,
       message: "Transaction updated successfully",
