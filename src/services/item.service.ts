@@ -18,7 +18,7 @@ export const getAllItems = async (query: any, userId: string) => {
 
   // 🔍 Search
   if (search) {
-    filter.title = { $regex: search, $options: "i" };
+    filter.name = { $regex: search, $options: "i" };
   }
 
   // 🎯 Filters

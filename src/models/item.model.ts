@@ -8,6 +8,10 @@ export interface IItem extends Document {
   condition: string;
   seller: mongoose.Types.ObjectId;
   createdAt: Date;
+  isSold: boolean;
+  isDeleted: boolean;
+  createdBy: mongoose.Types.ObjectId;
+  image: string;
 }
 
 const itemSchema = new Schema<IItem>(
@@ -15,9 +19,13 @@ const itemSchema = new Schema<IItem>(
     title: { type: String, required: true, trim: true },
     description: { type: String },
     price: { type: Number, required: true },
+    image: { type: String },
     category: { type: String, index: true },
     condition: { type: String },
     seller: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    isSold: { type: Boolean, default: false },
+    isDeleted: { type: Boolean, default: false },
+    createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },
   { timestamps: true }
 );

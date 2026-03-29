@@ -8,6 +8,7 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   setupFilesAfterEnv: ["<rootDir>/src/tests/setup.ts"],
+  maxWorkers: 1,
   transform: {
     ...tsJestTransformCfg,
   },

@@ -1,10 +1,15 @@
 import express from "express";
-import { fetchDashboard, createItem } from "../controllers/item.controller";
-//import { authenticate } from "../middlewares/auth.middleware";
+import { fetchDashboard, createItem, updateItem, deleteItem } from "../controllers/item.controller";
+import { authenticate } from "../middlewares/auth.middleware";
+import { validate } from "../middlewares/validate.middleware";
+import { createItemSchema, updateItemSchema } from "../validations/item.validation";
 
 const router = express.Router();
 
-router.get("/dashboard", fetchDashboard);
-router.post("/create", createItem);
+router.post("/create", authenticate, validate(createItemSchema), createItem);
+//router.put("/:id", authenticate, validate(updateItemSchema), updateItem);
+router.put("/:id", authenticate, updateItem);
+router.delete("/:id", authenticate, deleteItem);
+router.get("/dashboard", authenticate, fetchDashboard);
 
 export default router;

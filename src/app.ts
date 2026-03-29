@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes";
 import itemRoutes from "./routes/item.routes";
+import transactionRoutes from "./routes/transaction.routes";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(helmet());
 app.use(cors());
 app.use("/auth", authRoutes);
 app.use("/items", itemRoutes);
+app.use("/transactions", transactionRoutes);
 
 app.get("/", (_req, res) => {
   res.send("API is running 🚀");
