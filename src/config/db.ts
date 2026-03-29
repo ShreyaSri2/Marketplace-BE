@@ -8,5 +8,5 @@ export const connectDB = async () => {
     console.error(error);
     process.exit(1);
   }
-  console.log(process.env.MONGO_URI);
+  //console.log(process.env.MONGO_URI);
 };

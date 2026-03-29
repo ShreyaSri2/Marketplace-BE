@@ -13,15 +13,13 @@ export const getAllItems = async (query: any, userId: string) => {
   } = query;
 
   const filter: any = {
-    seller: { $ne: userId }, // exclude current user
+    seller: { $ne: userId }, 
   };
 
-  // 🔍 Search
   if (search) {
     filter.name = { $regex: search, $options: "i" };
   }
 
-  // 🎯 Filters
   if (category) filter.category = category;
   if (minPrice || maxPrice) {
     filter.price = {};
@@ -29,10 +27,8 @@ export const getAllItems = async (query: any, userId: string) => {
     if (maxPrice) filter.price.$lte = Number(maxPrice);
   }
 
-  // 📊 Pagination
   const skip = (Number(page) - 1) * Number(limit);
 
-  // ↕ Sorting
   const sortOptions: any = {
     [sortBy]: order === "asc" ? 1 : -1,
   };

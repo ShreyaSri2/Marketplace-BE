@@ -54,7 +54,6 @@ describe("Create Item API", () => {
     });
 
     expect(res.status).toBe(401);
-    //expect(res.body.message).toBe("DB error");
   });
 
   it("should fail validation", async () => {
@@ -64,122 +63,9 @@ describe("Create Item API", () => {
     .post("/items/create")
     .set("Authorization", token)
     .send({
-      title: "a", // invalid
+      title: "a",
     });
 
   expect(res.status).toBe(400);
 });
 });
-
-
-
-// import request from "supertest";
-// import app from "../app";
-// import User from "../models/user.model";
-// import Item from "../models/item.model";
-// import jwt from "jsonwebtoken";
-
-// let token: string;
-// let userId: string;
-
-// describe("Create Item API", () => {
-
-//   beforeEach(async () => {
-//     await User.deleteMany({});
-//     await Item.deleteMany({});
-
-//     const user = await User.create({
-//       name: "Test User",
-//       email: "test@test.com",
-//       password: "123456",
-//     });
-
-//     userId = user._id.toString();
-
-//     // ✅ generate token manually
-//     token = jwt.sign({ userId }, process.env.JWT_SECRET!);
-//   });
-
-//   it("should create item successfully", async () => {
-//     const res = await request(app)
-//       .post("/items/create")
-//       .set("Authorization", token) // ✅ IMPORTANT
-//       .send({
-//         title: "iPhone",
-//         description: "Good condition",
-//         price: 50000,
-//       });
-
-//     expect(res.status).toBe(400);
-//     expect(res.body.success).toBe(false);
-//     expect(res.body.data.title).toBe("iPhone");
-//   });
-
-//   it("should fail without token", async () => {
-//     const res = await request(app)
-//       .post("/items/create")
-//       .send({
-//         title: "iPhone",
-//         description: "Good condition",
-//         price: 50000,
-//       });
-
-//     expect(res.status).toBe(401);
-//   });
-
-// });
-
-
-// import request from "supertest";
-// import app from "../app";
-// import User from "../models/user.model";
-// import Item from "../models/item.model";
-// import jwt from "jsonwebtoken";
-
-// let token: string;
-// let userId: string;
-
-// describe("Create Item API", () => {
-
-//   beforeEach(async () => {
-//     await User.deleteMany({});
-//     await Item.deleteMany({});
-
-//     const user = await User.create({
-//       name: "Test User",
-//       email: "test@test.com",
-//       password: "123456",
-//     });
-
-//     userId = user._id.toString();
-
-//     token = jwt.sign({ userId }, process.env.JWT_SECRET!);
-//   });
-
-//   it("should create item successfully", async () => {
-//     const res = await request(app)
-//       .post("/items")
-//       .set("Authorization", token)
-//       .send({
-//         name: "iPhone",
-//         description: "Good condition",
-//         price: 50000,
-//       });
-
-//     expect(res.status).toBe(201);
-//     expect(res.body.success).toBe(true);
-//   });
-
-//   it("should fail without token", async () => {
-//     const res = await request(app)
-//       .post("/items")
-//       .send({
-//         name: "iPhone",
-//         description: "Good condition",
-//         price: 50000,
-//       });
-
-//     expect(res.status).toBe(401);
-//   });
-
-// });
